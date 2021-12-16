@@ -2,7 +2,8 @@ package fretes;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import pessoas.Cliente;
+
+import classes.inheritance.joined.Cliente;
 import util.Situacao;
 
 public class Frete implements Serializable, Comparable<Frete>{

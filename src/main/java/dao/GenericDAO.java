@@ -1,7 +1,7 @@
 package dao;
 
 import fretes.Frete;
-import pessoas.Cliente;
+
 
 public interface GenericDAO <T> {
 	public boolean cadastrar(T objeto);
