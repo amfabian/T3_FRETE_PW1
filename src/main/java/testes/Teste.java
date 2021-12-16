@@ -46,7 +46,7 @@ public class Teste {
 		//LISTANDO TODOS
 		System.out.println("\nLISTAR TODOS");
 		for (Cliente c : objDAO.listarTodos()) {
-			System.out.println("FOR");
+			
 			System.out.printf(c.toString());
 		}
 	}

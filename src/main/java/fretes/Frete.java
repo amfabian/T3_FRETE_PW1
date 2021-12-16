@@ -2,31 +2,57 @@ package fretes;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Objects;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 import classes.inheritance.joined.Cliente;
 import util.Situacao;
 
+@Entity
 public class Frete implements Serializable, Comparable<Frete>{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	@Id 
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private long idFrete;
+
 	private Double valor;
 	private String cidadeOrigem;
 	private String cidadeDestino;
+	@OneToMany (cascade= CascadeType.PERSIST)
+	@JoinColumn(name="idDepartamento")
 	private ArrayList<ItemFrete> itens;
+	@Enumerated(EnumType.ORDINAL)
 	private Situacao situacao;
+	@OneToOne (optional=false, cascade= CascadeType.PERSIST)
+	@JoinColumn (name="idCliente")
 	private Cliente cliente;
 
 
 	public Frete() {}
-	public Frete(Double valor, String cidadeOrigem, String cidadeDestino, ArrayList<ItemFrete> itens, Situacao situacao, Cliente cliente) {
-		super();
-		this.valor = valor;
-		this.cidadeOrigem = cidadeOrigem;
-		this.cidadeDestino = cidadeDestino;
-		this.itens = itens;
-		this.situacao = situacao;
-		this.cliente = cliente;
+
+
+
+	public long getIdFrete() {
+		return idFrete;
 	}
 
-	//Getters and Setters
+	public void setIdFrete(long idFrete) {
+		this.idFrete = idFrete;
+	}
+
 	public Double getValor() {
 		return valor;
 	}
@@ -87,6 +113,30 @@ public class Frete implements Serializable, Comparable<Frete>{
 		else if(getValor() < o.getValor())
 			return -1;
 		return 1;
+	}
+
+
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(cidadeDestino, cidadeOrigem, cliente, idFrete, itens, situacao, valor);
+	}
+
+
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Frete other = (Frete) obj;
+		return Objects.equals(cidadeDestino, other.cidadeDestino) && Objects.equals(cidadeOrigem, other.cidadeOrigem)
+				&& Objects.equals(cliente, other.cliente) && idFrete == other.idFrete
+				&& Objects.equals(itens, other.itens) && situacao == other.situacao
+				&& Objects.equals(valor, other.valor);
 	}
 
 

@@ -1,16 +1,51 @@
 package fretes;
 
 import java.io.Serializable;
+import java.util.Objects;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class ItemFrete implements util.Validador, Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	@Id 
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long idItemFrete;
 	private String descricao;
 	private Double peso;
 
 	public ItemFrete() {}
-	public ItemFrete(String descricao, Double peso) {
-		super();
-		this.descricao = descricao;
-		this.peso = peso;
+	
+	@Override
+	public int hashCode() {
+		return Objects.hash(descricao, idItemFrete, peso);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		ItemFrete other = (ItemFrete) obj;
+		return Objects.equals(descricao, other.descricao) && Objects.equals(idItemFrete, other.idItemFrete)
+				&& Objects.equals(peso, other.peso);
+	}
+
+	public Long getIdItemFrete() {
+		return idItemFrete;
+	}
+
+	public void setIdItemFrete(Long idItemFrete) {
+		this.idItemFrete = idItemFrete;
 	}
 
 	public String getDescricao() {
@@ -31,7 +66,7 @@ public class ItemFrete implements util.Validador, Serializable{
 
 	@Override
 	public String toString() {
-		return "ItemFrete [descricao=" + descricao + ", peso=" + peso + "]";
+		return "ItemFrete [id: " + idItemFrete + "descricao: " + descricao + ", peso: " + peso + "]";
 	}
 
 }

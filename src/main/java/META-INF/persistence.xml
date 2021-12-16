@@ -5,6 +5,8 @@
 	<persistence-unit name="testeJPA" transaction-type="RESOURCE_LOCAL">
 		<class>classes.inheritance.joined.Pessoa</class>
 		<class>classes.inheritance.joined.Cliente</class>
+		<class>fretes.Frete</class>
+		<class>fretes.ItemFrete</class>
 		<properties>
 			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/teste_frete"/>
 			<property name="javax.persistence.jdbc.user" value="root"/>

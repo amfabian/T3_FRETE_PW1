@@ -95,6 +95,7 @@ public class ClienteDAO {
 			ClienteDAO objDAO = new ClienteDAO();
 			for (Cliente c : objDAO.listarTodos()) {
 				if(c.getCpf().equals(cpf)) {
+					System.out.println("\nCPF MATCH");
 					return c;
 				}
 			}
