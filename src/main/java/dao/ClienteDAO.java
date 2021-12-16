@@ -11,9 +11,9 @@ import util.JPAUtil;
 public class ClienteDAO {
 
 	private EntityManager em;
-	
+
 	public ClienteDAO() {};
-	
+
 	public boolean cadastrar(Cliente entity) {
 		try {
 			em = JPAUtil.getEntityManager();
@@ -63,7 +63,6 @@ public class ClienteDAO {
 		} 
 	}
 
-	
 	public List<Cliente> listarTodos() {
 		try {
 			em = JPAUtil.getEntityManager();
@@ -76,7 +75,7 @@ public class ClienteDAO {
 			return null;
 		} 
 	}
-	
+
 	public Cliente pesquisarKey(long id) {
 		try {
 			em = JPAUtil.getEntityManager();
@@ -91,20 +90,19 @@ public class ClienteDAO {
 		} 
 	}
 
-
-	
-	public Cliente pesquisarCPF(String cpf) {
+	public Cliente pesquisarCPF(String cpf) { 
 		try {
-			em = JPAUtil.getEntityManager();
-			Cliente entity = em.find(Cliente.class, cpf);
-			return entity;
-		} catch (RuntimeException e) {
-			if (em.getTransaction().isActive()) {
-				System.out.println("\nErro ao pesquisar pelo cpf do cliente");
-				em.getTransaction().rollback();
+			ClienteDAO objDAO = new ClienteDAO();
+			for (Cliente c : objDAO.listarTodos()) {
+				if(c.getCpf().equals(cpf)) {
+					return c;
+				}
 			}
+		} catch (RuntimeException e) {
+			System.out.println("\nErro ao listar todas os clientes. \nImprimindo erro:\n");
+			e.printStackTrace();
 			return null;
-		} 
+		}
+		return null;
 	}
-
 }
