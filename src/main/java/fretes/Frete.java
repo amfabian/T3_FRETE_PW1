@@ -2,9 +2,11 @@ package fretes;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Objects;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -14,6 +16,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import classes.inheritance.joined.Cliente;
 import util.Situacao;
@@ -40,6 +44,9 @@ public class Frete implements Serializable, Comparable<Frete>{
 	@JoinColumn (name="idCliente")
 	private Cliente cliente;
 
+	 @Temporal(TemporalType.TIMESTAMP)
+	 @Column(name = "data", nullable = false)
+	 private Date data;
 
 	public Frete() {}
 
@@ -92,6 +99,15 @@ public class Frete implements Serializable, Comparable<Frete>{
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
 	}
+	
+	public Date getData() {
+		return data;
+	}
+
+	public void setData(Date data) {
+		this.data = data;
+	}
+
 	@Override
 	public String toString() {
 		String aux = "";
