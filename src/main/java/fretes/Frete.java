@@ -36,15 +36,29 @@ public class Frete implements Serializable, Comparable<Frete>{
 	private Double valor;
 	private String cidadeOrigem;
 	private String cidadeDestino;
+	//
+	//Relacao OneToMany pois o Frete possui Itens que serao transportados e 
+	//
 	@OneToMany (cascade= CascadeType.PERSIST)
 	@JoinColumn(name="idDepartamento")
 	private List<ItemFrete> itens;
+	//
+	//Escolhi a Ordinal pois a enum possui um indice que pode ser utilizado para a escolha das opcoes.
+	//Sendo mais importante que se mantenha a ordem
+	//
 	@Enumerated(EnumType.ORDINAL)
 	private Situacao situacao;
+	//
+	//Relacao OneToOne Unidiriecional pois o Frete possui um Cliente. e nao o contrario \o/
+	//Apesar do diagrama do enunciado mostar que e' bidirecional. nao consigo ver sentido na bidirecionalidade da relacao
+	//
 	@OneToOne (optional=false, cascade= CascadeType.PERSIST)
 	@JoinColumn (name="idCliente")
 	private Cliente cliente;
 
+	//
+	//TIMESTAMP para mostrar tempo e data e manter a legibilidade no banco de dados.
+	//
 	 @Temporal(TemporalType.TIMESTAMP)
 	 @Column(name = "data", nullable = false)
 	 private Date data;

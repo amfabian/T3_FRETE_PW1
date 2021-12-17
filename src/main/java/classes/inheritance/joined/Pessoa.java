@@ -10,6 +10,12 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 
+// Relacionamento Herança
+// Uma tabela para cada classe JOINED
+// Escolhi essa opçao, pois uma unica tabela me parece que ficara com muitos campos, o que nao me pareceu adequado.
+//A estrategia JOINED e' a que me parece mais proxima para abstracao extends do JAVA.
+//
+//idPessoa como Primary Key. 
 
 @Entity
 @Inheritance (strategy = InheritanceType.JOINED)

@@ -19,8 +19,7 @@ public class TestesMapeamentos {
 		System.out.println("\n***************************************************************");
 		System.out.println("\n\nINICIO DOS TESTES COM CLIENTE");
 		//INSERINDO CLIENTE
-		System.out.println("\nINSERINDO CLIENTES\n");
-				
+		System.out.println("\nINSERINDO CLIENTES\n");				
 				c1.setCpf("01235488001");
 				c1.setEndereco("Rua Vasco Alves");
 				c1.setNome("Alexandre2");
@@ -30,8 +29,7 @@ public class TestesMapeamentos {
 				} else {
 					System.out.println("Erro ao inserir o cliente!");
 					}
-				Cliente c2  = new Cliente();
-				
+				Cliente c2  = new Cliente();				
 				c2.setCpf("11111111111");
 				c2.setEndereco("Rua Cristovao Colombo");
 				c2.setNome("Eduardo");
@@ -41,8 +39,6 @@ public class TestesMapeamentos {
 				} else {
 					System.out.println("Erro ao inserir o cliente!");
 					}
-				
-
 		System.out.println("\n---------------------------------------------------");
 		
 		//PESQUISANDO POR CLIENTE USANDO CHAVE
@@ -174,9 +170,9 @@ public class TestesMapeamentos {
 					System.out.printf("\n");
 				}
 
-				System.out.println("\n***************************************************************");
-				System.out.println("\n***************************************************************");
-				System.out.println("\n\nINICIO DOS TESTES COM ITENS DE FRETE");
+		System.out.println("\n***************************************************************");
+		System.out.println("\n***************************************************************");
+		System.out.println("\n\nINICIO DOS TESTES COM ITENS DE FRETE");
 				
 				System.out.println("\nINSERINDO ITEM FRETE");
 				ItemFrete itemfrete1 = new ItemFrete();
@@ -190,17 +186,17 @@ public class TestesMapeamentos {
 					System.out.println("Erro ao inserir o ItemFrete!");
 					}		
 				
-				System.out.println("\n---------------------------------------------------");
-				System.out.println("\nPESQUISANDO ITEM FRETE PELA ID");
+		System.out.println("\n---------------------------------------------------");
+		System.out.println("\nPESQUISANDO ITEM FRETE PELA ID");
 				itemfrete1 = objItemDAO.pesquisarKey(1L);
 				System.out.println("Imprimindo Item Frete com id 1: \n" + itemfrete1);
-				System.out.println("\n---------------------------------------------------");
-				System.out.println("\nATUALIZANDO ITEM FRETE PESQUISADO ACIMA ^^ ");
+		System.out.println("\n---------------------------------------------------");
+		System.out.println("\nATUALIZANDO ITEM FRETE PESQUISADO ACIMA ^^ ");
 				itemfrete1.setPeso((double) 22);
 				objItemDAO.atualizar(itemfrete1);
 				System.out.println("Imprimindo Item Frete atualizado com novo peso: \n" + itemfrete1);
-				System.out.println("\n---------------------------------------------------");
-				System.out.println("\nPESQUISANDO ITEM FRETE PELA DESCRICAO");
+		System.out.println("\n---------------------------------------------------");
+		System.out.println("\nPESQUISANDO ITEM FRETE PELA DESCRICAO");
 				String pesq = "laranja";
 				itemfrete1 = objItemDAO.pesquisarDescricao(pesq);
 				if(itemfrete1 == null) {
@@ -208,17 +204,12 @@ public class TestesMapeamentos {
 				} else {
 					System.out.println("Imprimindo Item Frete pesquisando pela descricao (" + pesq + "): \n" + itemfrete1);
 				}
-				System.out.println("\n---------------------------------------------------");
-				
-				System.out.println("\nLISTAR TODOS");
+		System.out.println("\n---------------------------------------------------");
+		System.out.println("\nLISTAR TODOS");
 				for (ItemFrete i : objItemDAO.listarTodos()) {
 					System.out.printf(i.toString());
 					System.out.printf("\n");
 				}
-
-				
-				
-				
 	}
 
 }
