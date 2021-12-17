@@ -3,6 +3,7 @@ package fretes;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.CascadeType;
@@ -37,7 +38,7 @@ public class Frete implements Serializable, Comparable<Frete>{
 	private String cidadeDestino;
 	@OneToMany (cascade= CascadeType.PERSIST)
 	@JoinColumn(name="idDepartamento")
-	private ArrayList<ItemFrete> itens;
+	private List<ItemFrete> itens;
 	@Enumerated(EnumType.ORDINAL)
 	private Situacao situacao;
 	@OneToOne (optional=false, cascade= CascadeType.PERSIST)
@@ -79,7 +80,7 @@ public class Frete implements Serializable, Comparable<Frete>{
 		this.cidadeDestino = cidadeDestino;
 	}
 
-	public ArrayList<ItemFrete> getItens() {
+	public List<ItemFrete> getItens() {
 		return itens;
 	}
 	public void setItens(ArrayList<ItemFrete> itens) {
@@ -118,8 +119,8 @@ public class Frete implements Serializable, Comparable<Frete>{
 			}
 		}
 
-		return "[" +  "Preço: R$" + valor + ", Cidade de Origem: " + cidadeOrigem + ", Cidade de Destino: " + cidadeDestino +  "]\n" + cliente.toString() + aux + 
-				"Situação: " + situacao.getDescricao() ;
+		return "Data do Frete: [" + data + "]\n" + "[" + "id: " + idFrete +  ", Preço: R$" + valor + ", Cidade de Origem: " + cidadeOrigem + ", Cidade de Destino: " + cidadeDestino +  "]\n" + cliente.toString() + aux + 
+				"Situação: " + situacao.getDescricao() + "\n";
 	}
 	@Override
 	public int compareTo(Frete o) {

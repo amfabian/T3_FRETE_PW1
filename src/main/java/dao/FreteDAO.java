@@ -97,7 +97,7 @@ public class FreteDAO {
 				}
 			}
 		} catch (RuntimeException e) {
-			System.out.println("\nErro ao listar todas os clientes. \nImprimindo erro:\n");
+			System.out.println("\nErro ao listar todas os Fretes. \nImprimindo erro:\n");
 			e.printStackTrace();
 			return null;
 		}

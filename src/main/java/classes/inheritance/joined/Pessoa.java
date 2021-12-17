@@ -46,7 +46,7 @@ public class Pessoa implements Serializable {
 	}
 	@Override
 	public String toString() {
-		return "Pessoa [id=" + idPessoa + ", nome=" + nome + "]";
+		return "Pessoa [id: " + idPessoa + ", nome: " + nome + "]";
 	}
 	@Override
 	public int hashCode() {

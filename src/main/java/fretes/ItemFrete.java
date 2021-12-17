@@ -66,7 +66,7 @@ public class ItemFrete implements util.Validador, Serializable{
 
 	@Override
 	public String toString() {
-		return "ItemFrete [id: " + idItemFrete + "descricao: " + descricao + ", peso: " + peso + "]";
+		return "ItemFrete [id: " + idItemFrete + ", descricao: " + descricao + ", peso: " + peso + "]";
 	}
 
 }
