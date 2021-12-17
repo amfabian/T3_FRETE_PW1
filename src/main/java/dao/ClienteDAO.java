@@ -22,8 +22,8 @@ public class ClienteDAO {
 			em.getTransaction().commit();
 			return true;
 		} catch (RuntimeException e) {
+			System.out.println("\nErro ao cadastrar novo Cliente. Revertendo alteracoes");
 			if (em.getTransaction().isActive()) {
-				System.out.println("\nErro ao cadastrar novo Cliente. Revertendo alteracoes");
 				em.getTransaction().rollback();
 			}
 			return false;
@@ -38,8 +38,8 @@ public class ClienteDAO {
 			em.getTransaction().commit();
 			return true;
 		} catch (RuntimeException e) {
+			System.out.println("\nErro ao atualizar o Cliente\n" + entity + "\nRevertendo alteracoes");
 			if (em.getTransaction().isActive()) {
-				System.out.println("\nErro ao atualizar o Cliente\n" + entity + "\nRevertendo alteracoes");
 				em.getTransaction().rollback();
 			}
 			return false;
@@ -55,8 +55,8 @@ public class ClienteDAO {
 			em.getTransaction().commit();
 			return true;
 		} catch (RuntimeException e) {
+			System.out.println("\nErro ao excluir o cliente com id " + id + "\nRevertendo alteracoes");
 			if (em.getTransaction().isActive()) {
-				System.out.println("\nErro ao excluir o cliente com id " + id + "\nRevertendo alteracoes");
 				em.getTransaction().rollback();
 			}
 			return false;
@@ -82,8 +82,8 @@ public class ClienteDAO {
 			Cliente entity = em.find(Cliente.class, id);
 			return entity;
 		} catch (RuntimeException e) {
+			System.out.println("\nErro ao pesquisar pelo id do cliente");
 			if (em.getTransaction().isActive()) {
-				System.out.println("\nErro ao pesquisar pelo id do cliente");
 				em.getTransaction().rollback();
 			}
 			return null;
@@ -95,7 +95,7 @@ public class ClienteDAO {
 			ClienteDAO objDAO = new ClienteDAO();
 			for (Cliente c : objDAO.listarTodos()) {
 				if(c.getCpf().equals(cpf)) {
-					System.out.println("\nCPF MATCH");
+				//	System.out.println("\nCPF MATCH");
 					return c;
 				}
 			}

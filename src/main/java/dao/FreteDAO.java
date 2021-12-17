@@ -19,8 +19,8 @@ public class FreteDAO {
 			em.getTransaction().commit();
 			return true;
 		} catch (RuntimeException e) {
+			System.out.println("\nErro ao cadastrar novo Frete. Revertendo alteracoes");
 			if (em.getTransaction().isActive()) {
-				System.out.println("\nErro ao cadastrar novo Frete. Revertendo alteracoes");
 				em.getTransaction().rollback();
 			}
 			return false;
@@ -79,8 +79,8 @@ public class FreteDAO {
 			Frete entity = em.find(Frete.class, id);
 			return entity;
 		} catch (RuntimeException e) {
+			System.out.println("\nErro ao pesquisar pelo id do Frete");
 			if (em.getTransaction().isActive()) {
-				System.out.println("\nErro ao pesquisar pelo id do Frete");
 				em.getTransaction().rollback();
 			}
 			return null;
@@ -92,7 +92,7 @@ public class FreteDAO {
 			FreteDAO objDAO = new FreteDAO();
 			for (Frete frete : objDAO.listarTodos()) {
 				if(frete.getCidadeOrigem().equals(cidade) | frete.getCidadeDestino().equals(cidade) ) {
-					System.out.println("\nCIDADE MATCH");
+				//	System.out.println("\nCIDADE MATCH");
 					return frete;
 				}
 			}

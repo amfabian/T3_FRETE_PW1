@@ -93,7 +93,7 @@ public class ItemFreteDAO {
 			ItemFreteDAO objDAO = new ItemFreteDAO();
 			for (ItemFrete item : objDAO.listarTodos()) {
 				if(item.getDescricao().equals(descricao)) {
-					System.out.println("\nITEM MATCH");
+				//	System.out.println("\nITEM MATCH");
 					return item;
 				}
 			}
