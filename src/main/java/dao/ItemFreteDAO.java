@@ -5,8 +5,8 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
-import fretes.Frete;
-import fretes.ItemFrete;
+import classes.onetomany.Frete;
+import classes.onetomany.ItemFrete;
 import util.JPAUtil;
 
 public class ItemFreteDAO {

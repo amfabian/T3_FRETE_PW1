@@ -4,7 +4,10 @@ import java.io.Serializable;
 import java.util.Objects;
 
 import javax.persistence.Entity;
+import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
+
+import classes.onetomany.Frete;
 
 @Entity
 @PrimaryKeyJoinColumn(name = "idCliente", referencedColumnName = "idPessoa") 
@@ -12,10 +15,14 @@ public class Cliente extends Pessoa implements Serializable {
 	/**
 	 * 
 	 */
+	
 	private static final long serialVersionUID = 1L;
 	private String endereco;
 	private String telefone;
 	private String cpf;
+	
+	@OneToOne (mappedBy = "cliente")
+	private Frete frete;
 
 	public Cliente() {
 		super();

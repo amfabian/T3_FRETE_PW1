@@ -1,6 +1,6 @@
 package dao;
 
-import fretes.Frete;
+import classes.onetomany.Frete;
 
 
 public interface GenericDAO <T> {

@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import classes.inheritance.joined.Cliente;
+import classes.onetomany.Frete;
+import classes.onetomany.ItemFrete;
 import dao.ClienteDAO;
 import dao.FreteDAO;
 import dao.ItemFreteDAO;
-import fretes.Frete;
-import fretes.ItemFrete;
 import util.Situacao;
 
 public class TestesMapeamentos {
@@ -72,7 +72,10 @@ public class TestesMapeamentos {
 		System.out.println("\n---------------------------------------------------");
 				String cpf = "11111111111";
 		System.out.println("\nPESQUISANDO CLIENTE UTILIZANDO O CPF " + cpf);
-				c3 = objDAO.pesquisarCPF(cpf);
+			for (Cliente c : objDAO.pesquisarCPF(cpf)) {
+			
+			System.out.printf(c.toString());
+		}
 				if(c3 == null) {
 					System.out.println("Cliente não encontrado");
 				} else {
@@ -97,28 +100,49 @@ public class TestesMapeamentos {
 				frete.setCidadeOrigem("Porto Alegre");
 				frete.setCidadeDestino("Canoas");
 				frete.setSituacao(Situacao.EM_ANDAMENTO);
-				frete.setCliente(objDAO.pesquisarCPF("11111111111"));
+				frete.setCliente(objDAO.pesquisarKey(1L));
 				frete.setData(new Date());
-				ItemFrete item1 = new ItemFrete();
-				item1.setDescricao("chocolate");
-				item1.setPeso((double) 11);
-			
-				ItemFrete item2 = new ItemFrete();
-				item2.setDescricao("suco");
-				item2.setPeso((double) 20);
-			
-				ArrayList<ItemFrete> itens = new ArrayList<ItemFrete>();
-				if(itens.add(item1)) {
-					System.out.println("\nItem 1 add com suceso");}
-				if(itens.add(item2)) {
-					System.out.println("Item 2 add com suceso");}
-				frete.setItens(itens);				
+				
 				if(objFreteDAO.cadastrar(frete)) {
 					System.out.println("\nFrete inserido com sucesso!");
 				} else {
 					System.out.println("\nErro ao inserir o frete!");
 				}
-
+				
+				ItemFreteDAO objItemFreteDAO = new ItemFreteDAO();
+				
+				ItemFrete item1 = new ItemFrete();
+				ArrayList<ItemFrete> itens = new ArrayList<ItemFrete>();
+				item1.setDescricao("chocolate");
+				item1.setPeso((double) 11);
+				if(objItemFreteDAO.cadastrar(item1)){
+					System.out.println("\nItem 1 Frete inserido com sucesso!");
+				} else {
+					System.out.println("\nErro ao inserir Item 1 frete!");
+				}
+				if(itens.add(item1)) {
+					System.out.println("\nItem 1 add com suceso " + item1);}
+			
+				/*
+				 * ItemFreteDAO objItem2FreteDAO = new ItemFreteDAO(); ItemFrete item2 = new
+				 * ItemFrete(); item2.setDescricao("suco"); item2.setPeso((double) 20);
+				 * 
+				 * if(objItem2FreteDAO.cadastrar(item2)){
+				 * System.out.println("\nItem 2 Frete inserido com sucesso!"); } else {
+				 * System.out.println("\nErro ao inserir Item 2 frete!"); }
+				 * 
+				 * 
+				 * if(itens.add(item2)) { System.out.println("Item 2 add com suceso" + item2);}
+				 */
+				frete.setItens(itens);	
+				System.out.println("Lista de itens" + itens);
+				
+			
+				
+				 if(objFreteDAO.atualizar(frete)) {
+				 System.out.println("\nFrete atualizado com ITEM com sucesso!"); } else {
+				 System.out.println("\nErro ao atualizar frete com item"); }
+				 
 		
 		//PESQUISANDO POR FRETE USANDO CHAVE/ID
 		System.out.println("\nPESQUISANDO FRETE USANDO ID");

@@ -4,7 +4,8 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
-import fretes.Frete;
+
+import classes.onetomany.Frete;
 import util.JPAUtil;
 
 public class FreteDAO {

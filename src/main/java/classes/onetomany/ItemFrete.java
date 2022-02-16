@@ -1,4 +1,4 @@
-package fretes;
+package classes.onetomany;
 
 import java.io.Serializable;
 import java.util.Objects;
@@ -20,8 +20,17 @@ public class ItemFrete implements util.Validador, Serializable{
 	private String descricao;
 	private Double peso;
 
-	public ItemFrete() {}
+	public ItemFrete() {
+		super();
+	}
 	
+	public ItemFrete(String descricao, Double peso) {
+		super();
+		this.descricao = descricao;
+		this.peso = peso;
+	}
+	
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(descricao, idItemFrete, peso);
@@ -39,6 +48,7 @@ public class ItemFrete implements util.Validador, Serializable{
 		return Objects.equals(descricao, other.descricao) && Objects.equals(idItemFrete, other.idItemFrete)
 				&& Objects.equals(peso, other.peso);
 	}
+	
 
 	public Long getIdItemFrete() {
 		return idItemFrete;
@@ -66,7 +76,8 @@ public class ItemFrete implements util.Validador, Serializable{
 
 	@Override
 	public String toString() {
-		return "ItemFrete [id: " + idItemFrete + ", descricao: " + descricao + ", peso: " + peso + "]";
+		return "ItemFrete [idItemFrete=" + idItemFrete + ", descricao=" + descricao + ", peso=" + peso + "]";
 	}
 
+	
 }

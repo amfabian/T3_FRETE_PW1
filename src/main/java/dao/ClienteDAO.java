@@ -2,6 +2,7 @@ package dao;
 
 import java.util.List;
 
+import javax.management.Query;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
@@ -90,20 +91,15 @@ public class ClienteDAO {
 		} 
 	}
 
-	public Cliente pesquisarCPF(String cpf) { 
+	public List<Cliente> pesquisarCPF(String cpf) { 
+
 		try {
-			ClienteDAO objDAO = new ClienteDAO();
-			for (Cliente c : objDAO.listarTodos()) {
-				if(c.getCpf().equals(cpf)) {
-				//	System.out.println("\nCPF MATCH");
-					return c;
-				}
-			}
+			return(em.createQuery("SELECT c FROM Cliente c WHERE c.cpf LIKE :custName").setParameter("custName", cpf).getResultList());
+			
 		} catch (RuntimeException e) {
-			System.out.println("\nErro ao listar todas os clientes. \nImprimindo erro:\n");
+			System.out.println("\nErro ao pesquisar por CPF. \nImprimindo erro:\n");
 			e.printStackTrace();
 			return null;
 		}
-		return null;
 	}
 }
